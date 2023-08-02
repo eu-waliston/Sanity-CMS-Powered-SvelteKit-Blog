@@ -1,1 +1,1 @@
-# Sanity-CMS-Powered-SvelteKit-Blog
+# Sanity CMS Powered SvelteKit Blog
