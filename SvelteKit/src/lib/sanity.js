@@ -2,7 +2,7 @@ import { createClient } from "@sanity/client";
 
 function sanityClient() {
   const config = {
-    projectId:  "xs49crfr",
+    projectId: "xs49crfr",
     dataset: "production",
     apiVersion: "2021-10-21",
   };
@@ -18,7 +18,13 @@ export const getAllPosts = async () => {
   return allPosts;
 };
 
-export const getPostBySlug = async (slug) => {
-  
-} 
+export const getPostBySlug = async (
+  /** @type {string} */
+  slug
+  ) => {
+  const client = sanityClient();
+  const postQuery = `*[ _type == 'post' && slug.current == '${slug}']{title, "slug": slug.current, author->{ name }, "date": publishedAt, "content": body, categories[]->{ title } }`;
 
+  const post = await client.fetch(postQuery);
+  return post;
+};
