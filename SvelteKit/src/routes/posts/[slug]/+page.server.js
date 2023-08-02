@@ -5,10 +5,9 @@ import { compile } from "mdsvex";
 export async function load({ params }) {
   const routeSlug = params.slug;
   const getSinglePost = await getPostBySlug(routeSlug);
-
-  const { title, slug, content, ...rest } = getSinglePost[0];
+  const { title, slug, content, ...rest } = getSinglePost;
   const post = { title, slug, content: compile(content), ...rest };
-  console.log("POST: ", post);
+
   return {
     post,
   };
