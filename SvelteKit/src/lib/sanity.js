@@ -38,6 +38,5 @@ export const getPostBySlug = async (
    * @type {import('./types').Post[]}
    */
   const post = await client.fetch(postQuery);
-  
   return postSchema.parse(post[0]);
 };
